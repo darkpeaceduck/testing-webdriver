@@ -95,13 +95,13 @@ class MarketObjectTest(unittest.TestCase):
         self.not_none(panel.get_items())
         
         
-#         self.__test_haractericrics_tab(panel.chracterictics_page())
+        self.__test_haractericrics_tab(panel.chracterictics_page())
         self.__test_price_tab(panel.prices_page())
-#         self.__test_maps_tab(panel.map_page())
-#         self.__test_reviews_tab(panel.reviews_page())
-#         self.__test_articles_tab(panel.articles_page())
-#         self.__test_forum_tab(panel.forum_page())
-#         self.__test_title_tab(panel.title_page())
+        self.__test_maps_tab(panel.map_page())
+        self.__test_reviews_tab(panel.reviews_page())
+        self.__test_articles_tab(panel.articles_page())
+        self.__test_forum_tab(panel.forum_page())
+        self.__test_title_tab(panel.title_page())
 
     def tearDown(self):
         self.driver.close()

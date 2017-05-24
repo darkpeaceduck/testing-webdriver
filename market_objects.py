@@ -234,36 +234,36 @@ class CtlPanel(BaseElement):
         return self.tabs
     
     def title_page(self):
-        Button(self.driver, self.get_items()[0]).click()
         self.reload()
+        Button(self.driver, self.get_items()[0]).click()
         return MarketItemPage(self.driver)
     
     def chracterictics_page(self):
-        Button(self.driver, self.get_items()[1]).click()
         self.reload()
+        Button(self.driver, self.get_items()[1]).click()
         return HaractericricsPage(self.driver)
     
     def prices_page(self):
-        Button(self.driver, self.get_items()[2]).click()
         self.reload()
+        Button(self.driver, self.get_items()[2]).click()
         return PricePage(self.driver)
     
     def map_page(self):
-        Button(self.driver, self.get_items()[3]).click()
         self.reload()
+        Button(self.driver, self.get_items()[3]).click()
         return MapPage(self.driver)
     
     def reviews_page(self):
-        Button(self.driver, self.get_items()[4]).click()
         self.reload()
+        Button(self.driver, self.get_items()[4]).click()
         return ReviewsPage(self.driver)
     
     def articles_page(self):
-        Button(self.driver, self.get_items()[5]).click()
         self.reload()
+        Button(self.driver, self.get_items()[5]).click()
         return ArticlesPage(self.driver)
     
     def forum_page(self):
-        Button(self.driver, self.get_items()[6]).click()
         self.reload()
+        Button(self.driver, self.get_items()[6]).click()
         return ForumPage(self.driver)
