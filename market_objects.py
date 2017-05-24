@@ -142,7 +142,7 @@ class FilterPanel(BaseElement):
         self.__send_keys(element, price)
     
     def submit_button(self):
-        return Button(self.driver, self.element.find_elements_by_class_name("button")[1])
+        return Button(self.driver, self.element.find_element_by_class_name("button_action_n-filter-apply"))
     
 class SnippetCard(BaseElement):
     def price(self):
