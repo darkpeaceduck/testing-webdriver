@@ -189,13 +189,29 @@ class ForumPage(HeaderPage):
     
 class CtlPanel(BaseElement):
     def __init__(self, driver):
-        super().__init__(driver, driver.find_element_by_class_name("n-product-tabs__list"))
+        super().__init__(driver, driver.find_elements_by_class_name("n-product-tabs__item"))
+        self.reload()
         
     def reload(self):
-        self.element = self.driver.find_element_by_class_name("n-product-tabs__list")
+        self.element = self.driver.find_elements_by_class_name("n-product-tabs__item")
+        self.tabs = [None] * 10
+        for tab in self.element:
+            data_name = tab.get_attribute("data-name")
+            index = 0;
+            dic = {
+                "product" : 0,
+                "spec" : 1,
+                "offers" : 2,
+                "geo" : 3,
+                "reviews" : 4,
+                "articles" : 5,
+                "forums" : 6
+            }
+            self.tabs[dic[data_name]] = tab
+        return self.element
     
     def get_items(self):
-        return self.element.find_elements_by_tag_name("a")
+        return self.tabs
     
     def title_page(self):
         Button(self.driver, self.get_items()[0]).click()
