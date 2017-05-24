@@ -140,6 +140,7 @@ class FilterPanel(BaseElement):
     def to_price(self, price):
         element = self.__price_body().find_elements_by_class_name("input")[1].find_element_by_class_name("input__control")
         self.__send_keys(element, price)
+        
     
     def submit_button(self):
         return Button(self.driver, self.element.find_element_by_class_name("button_action_n-filter-apply"))
@@ -165,6 +166,25 @@ class PricePage(HeaderPage):
     def snippet_cards(self):
         return list(map(lambda x : SnippetCard(self.driver, x), \
                         self.results_window().find_elements_by_class_name("snippet-card")))
+        
+    def sort_price(self):
+        script_params='{"n-filter-sorter":{"options":[{"id":"aprice","type":"asc"},{"id":"dprice","type":"desc"}],"place":"offers"}}'
+        elements = self.driver.find_elements_by_class_name("n-filter-sorter")
+        for e in elements:
+            if (e.get_attribute("data-bem") == script_params):
+                return Button(self.driver, e)
+        return None
+    
+    def __button_next_elem(self):
+        return self.driver.find_element_by_class_name("n-pager__button-next")
+    def button_next(self):
+        return Button(self.driver, self.__button_next_elem())
+    def has_button_next(self):
+        try:
+            elem = self.__button_next_elem() 
+            return True
+        except:
+            return False
     
 class MapPage(HeaderPage):
     def __init__(self, driver):

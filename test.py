@@ -37,14 +37,30 @@ class MarketObjectTest(unittest.TestCase):
         for item in page.snippet_cards():
             price = item.price()
             self.assertTrue(range_from <= price and price <= range_to)
+    
+    def __price_tab_test_sort(self, page):        
+        self.not_none(page.sort_price())
+        page.sort_price().click()
+        
+        last = -1
+        while True:
+            for item in page.snippet_cards():
+                price = item.price()
+                self.assertLessEqual(last, price)
+                last = price
+            if page.has_button_next():
+                page.button_next().click()
+            else:
+                break
 #      
     def __test_price_tab(self, page):
         self.header_test(page.header())
         self.not_none(page.results_window())
-          
-        ranges = [(0, 100000), (100000, 0), (1000, 2000), (2000, 5000), (5000, 10000)]
-        for (fr, to) in ranges:
-            self.__price_tab_test_range(page, fr , to)
+        self.__price_tab_test_sort(page)
+      
+#         ranges = [(0, 100000), (100000, 0), (1000, 2000), (2000, 5000), (5000, 10000)]
+#         for (fr, to) in ranges:
+#             self.__price_tab_test_range(page, fr , to)
 
     def __test_maps_tab(self, page): 
         self.header_test(page.header())
@@ -79,13 +95,13 @@ class MarketObjectTest(unittest.TestCase):
         self.not_none(panel.get_items())
         
         
-        self.__test_haractericrics_tab(panel.chracterictics_page())
+#         self.__test_haractericrics_tab(panel.chracterictics_page())
         self.__test_price_tab(panel.prices_page())
-        self.__test_maps_tab(panel.map_page())
-        self.__test_reviews_tab(panel.reviews_page())
-        self.__test_articles_tab(panel.articles_page())
-        self.__test_forum_tab(panel.forum_page())
-        self.__test_title_tab(panel.title_page())
+#         self.__test_maps_tab(panel.map_page())
+#         self.__test_reviews_tab(panel.reviews_page())
+#         self.__test_articles_tab(panel.articles_page())
+#         self.__test_forum_tab(panel.forum_page())
+#         self.__test_title_tab(panel.title_page())
 
     def tearDown(self):
         self.driver.close()
